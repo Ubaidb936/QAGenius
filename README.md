@@ -1,7 +1,7 @@
 
 <h1 align="center"> <p>QAGenius</p></h1>
-<h3 align="center">
-    <p> 
+<h3 align="left">
+    <p align="left"> 
         QAGenius gives you the power to generate a Question-and-answer dataset from a supplied PDF document using HuggingFace Models and Langchain. Every data point (question and answer) is judged and filtered out based on groundedness and relevance scores. 
         groundedness: how well one can answer the given question unambiguously with the given context(context: PDF document)?
         relevance:  how useful this question can be to what pdf is about?

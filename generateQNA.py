@@ -110,7 +110,8 @@ MAX_GENERATIONS  = len(langchain_docs)
 start_time = time.time()
 i = 1
 N_GENERATIONS = (
-    4   # We intentionally generate only 10 QA couples here for cost and time considerations
+    MAX_GENERATIONS
+     #4 #We intentionally generate only 10 QA couples here for cost and time considerations
 )
 
 print("-----------------Generating  QNA couples....")

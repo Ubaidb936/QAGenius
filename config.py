@@ -1,8 +1,8 @@
 ## Set pdf path (------------Required)
-pdfPath = "law.pdf"
+pdfPath = "Testimony101.pdf"
     #examples
         #1-pdfPath = "https://www.dobs.pa.gov/Documents/Publications/Brochures/The%20Basics%20for%20Investing%20in%20Stocks.pdf"
-        #2-pdfPath = "doc.pdf"
+        #2-pdfPath = "CarAccidentLaw.pdf"
 
 
 
@@ -22,11 +22,12 @@ hf_token = ""
 
 
 ## Set huggingFace llm model id (-------------------Required)
-model_id = "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO"
+model_id = "mistralai/Mixtral-8x7B-Instruct-v0.1"
     #examples
         #1-model_id = "mistralai/Mixtral-8x7B-Instruct-v0.1"  (Recommended.........)
         #2-model_id = "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO"
-        #3-model_id = "mistralai/Mixtral-8x7B-Instruct-v0.1"
+        #3-model_id = "AdaptLLM/law-LLM-13B"
+        
 
 
 
@@ -36,9 +37,9 @@ model_id = "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO"
 
 
 ##What the document is about (---------------Required)
-title = "Car Accident Legal Guide"
+title = "Witness Testimony"
     # examples
-       # title = "stock market Basics"
+       # title = "Car Accident Legal Guide"
 
 
 
@@ -47,13 +48,15 @@ title = "Car Accident Legal Guide"
 
 
 ##Local file path where you want to store Generated QNA CSV from generateQNA.py (---------------Required)
-file_path = "CarAccident.csv"
+# file_path = "CarAccident.csv"
+file_path = "WitnessTestimony.csv"
 
 
 
 
 ##datasetName to push it into huggingface (Required only if you want to push the dataset to HuggingFaceHub)
-datasetName = "CarAccidentLaw"
+# datasetName = "CarAccidentLaw"
+datasetName = "WitnessTestimony"
      #examples
         #datasetName = "stock_market_basics"
             #Note: datasetName must use alphanumeric chars or '-', '_', '.', '--' and '..' are forbidden, '-' and '.' cannot start or 

@@ -1,46 +1,74 @@
-## Set pdf path (Required)
-pdfPath = "doc.pdf"
-    ##examples
-    ##pdfPath = "https://www.dobs.pa.gov/Documents/Publications/Brochures/The%20Basics%20for%20Investing%20in%20Stocks.pdf"
-    ##pdfPath = "doc.pdf"
-
-
-
-##Set hugginface token (Required)
-hf_token = "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"
-##examples
-    ##pdfPath = "https://www.dobs.pa.gov/Documents/Publications/Brochures/The%20Basics%20for%20Investing%20in%20Stocks.pdf"
-    ##pdfPath = "doc.pdf"
+## Set pdf path (------------Required)
+pdfPath = ""
+    #examples
+        #1-pdfPath = "https://www.dobs.pa.gov/Documents/Publications/Brochures/The%20Basics%20for%20Investing%20in%20Stocks.pdf"
+        #2-pdfPath = "doc.pdf"
 
 
 
 
-## Set huggingFace llm model id (Required)
+
+
+
+##Set hugginface token (----------------------Required)
+hf_token = ""
+    #examples
+        #hf_token = "hf_................"
+
+
+
+
+
+
+
+## Set huggingFace llm model id (-------------------Required)
 model_id = "mistralai/Mixtral-8x7B-Instruct-v0.1"
+    #examples
+        #1-model_id = "mistralai/Mixtral-8x7B-Instruct-v0.1"  (Recommended.........)
+        #2-model_id = "mistralai/Mistral-7B-Instruct-v0.2"
 
 
 
 
 
-##What the document is about (Required)
-title = "understand the basics of the stock market"
+
+
+
+##What the document is about (---------------Required)
+title = "Car Accident Legal Guide"
     # examples
-    # title = "understand the basics of the stock market"
+       # title = "stock market Basics"
 
 
 
-##datasetName to push it into huggingface (Required)
-datasetName = "stock_market_basics"
- ##examples
-    ##datasetName = "stock_market_basics"
-    ##Note: datasetName must use alphanumeric chars or '-', '_', '.', '--' and '..' are forbidden, '-' and '.' cannot start or end the name, max length is 96
+
+
+
+
+##Local file path where you want to store Generated QNA CSV from generateQNA.py (---------------Required)
+file_path = "CarAccident.csv"
+
+
+
+
+##datasetName to push it into huggingface (Required only if you want to push the dataset to HuggingFaceHub)
+datasetName = "CarAccidentLaw"
+     #examples
+        #datasetName = "stock_market_basics"
+            #Note: datasetName must use alphanumeric chars or '-', '_', '.', '--' and '..' are forbidden, '-' and '.' cannot start or 
+            #end the name, max length is 96
+
+
+
+
+
 
 
 
 ##Some keywords in the doc separated by, (Optional)
 keywordsRelatedToPdfDoc = None
-    ##examples
-    ##keywordsRelatedToPdfDoc = "stock, stop order, start order."
+    #examples
+       #keywordsRelatedToPdfDoc = "stock, stop order, start order."
     
 
 

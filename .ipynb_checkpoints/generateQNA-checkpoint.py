@@ -16,6 +16,8 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.llms import HuggingFaceHub
 from langchain_community.chat_models import ChatHuggingFace
 import os
+import random
+import time
 
 pdfPath = config.pdfPath
 hf_token = config.hf_token
@@ -44,15 +46,21 @@ if file_path is None:
 os.environ['HUGGINGFACEHUB_API_TOKEN'] = hf_token
 
 
-##Loading the pdf
-loader = PyPDFLoader(pdfPath)
-text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=2000,
-    chunk_overlap=200,
-    add_start_index=True,
-    separators=["\n\n", "\n", ".", " ", ""],
-)
-langchain_docs =  loader.load_and_split(text_splitter = text_splitter)
+#Loading the pdf
+try:
+    loader = PyPDFLoader(pdfPath)
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=2000,
+        chunk_overlap=200,
+        add_start_index=True,
+        separators=["\n\n", "\n", ".", " ", ""],
+    )
+    langchain_docs = loader.load_and_split(text_splitter=text_splitter)
+except Exception as e:
+    print("An error occurred:", e)
+
+
+
 
 
 #loading the hugginFace LLM
@@ -96,15 +104,27 @@ QA_generation_prompt = ChatPromptTemplate.from_template(QA_generation_prompt)
 QA_generation_agent = QA_generation_prompt | chat_model
 
 
+
 ##Generating the QNA.........
+MAX_GENERATIONS  = len(langchain_docs)
+start_time = time.time()
+i = 1
+N_GENERATIONS = (
+    2   # We intentionally generate only 10 QA couples here for cost and time considerations
+)
+
 print("-----------------Generating  QNA couples....")
 outputs = []
-for context in tqdm(langchain_docs):
+for context in random.sample(langchain_docs, N_GENERATIONS):
     # Generate QA couple
+    print("Generating datapoint {}/{} in progress.....".format(i, N_GENERATIONS))
+    i+=1
     output_QA_couple = QA_generation_agent.invoke({"context": context.page_content}).content
     try:
         question = output_QA_couple.split("Factoid question: ")[2].split("Answer: ")[0]
         answer = output_QA_couple.split("Answer: ")[2]
+        index = answer.find("Factoid question:")
+        answer = answer[:index].strip()
         outputs.append(
             {
                 "context": context.page_content,
@@ -164,10 +184,12 @@ question_relevance_critique_prompt = ChatPromptTemplate.from_template(
 )
 question_relevance_critique_agent = question_relevance_critique_prompt | chat_model
 
-
+i = 1
 ##Generating groundedness_score and relevance_score  for each QuestionAnswer...............
 print("------------------------Generating groundedness_score and relevance_score  for each QNA..............")
-for output in tqdm(outputs):
+for output in outputs:
+    print("Evaluating datapoint {}/{} in progress.....".format(i, N_GENERATIONS))
+    i+=1
     # Critique the generated QA couple
     question_groundedness_evaluation = question_groundedness_critique_agent.invoke(
         {"context": output["context"], "question": output["question"]}
@@ -195,7 +217,10 @@ for output in tqdm(outputs):
     except:
         continue
 
+end_time = time.time()
+elapsed_time = end_time - start_time
 
+print(f"Time taken to generate and evaluate {N_GENERATIONS} datapoints is : {elapsed_time/60} mins")
 
 
 ##Filtering the QA based on the scores.....

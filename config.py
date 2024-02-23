@@ -1,5 +1,5 @@
 ## Set pdf path (------------Required)
-pdfPath = None
+pdfPath = ""
     #examples
         #1-pdfPath = "https://www.dobs.pa.gov/Documents/Publications/Brochures/The%20Basics%20for%20Investing%20in%20Stocks.pdf"
         #2-pdfPath = "doc.pdf"
@@ -11,7 +11,7 @@ pdfPath = None
 
 
 ##Set hugginface token (----------------------Required)
-hf_token = None
+hf_token = ""
     #examples
         #hf_token = "hf_................"
 
@@ -35,7 +35,7 @@ model_id = "mistralai/Mixtral-8x7B-Instruct-v0.1"
 
 
 ##What the document is about (---------------Required)
-title = None
+title = "Car Accident Legal Guide"
     # examples
        # title = "stock market Basics"
 
@@ -46,13 +46,13 @@ title = None
 
 
 ##Local file path where you want to store Generated QNA CSV from generateQNA.py (---------------Required)
-file_path = "qna.csv"
+file_path = "CarAccident.csv"
 
 
 
 
 ##datasetName to push it into huggingface (Required only if you want to push the dataset to HuggingFaceHub)
-datasetName = "stock_market_basics"
+datasetName = "CarAccidentLaw"
      #examples
         #datasetName = "stock_market_basics"
             #Note: datasetName must use alphanumeric chars or '-', '_', '.', '--' and '..' are forbidden, '-' and '.' cannot start or 

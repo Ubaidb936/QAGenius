@@ -1,5 +1,5 @@
 ## Set pdf path (------------Required)
-pdfPath = ""
+pdfPath = "law.pdf"
     #examples
         #1-pdfPath = "https://www.dobs.pa.gov/Documents/Publications/Brochures/The%20Basics%20for%20Investing%20in%20Stocks.pdf"
         #2-pdfPath = "doc.pdf"
@@ -22,10 +22,11 @@ hf_token = ""
 
 
 ## Set huggingFace llm model id (-------------------Required)
-model_id = "mistralai/Mixtral-8x7B-Instruct-v0.1"
+model_id = "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO"
     #examples
         #1-model_id = "mistralai/Mixtral-8x7B-Instruct-v0.1"  (Recommended.........)
-        #2-model_id = "mistralai/Mistral-7B-Instruct-v0.2"
+        #2-model_id = "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO"
+        #3-model_id = "mistralai/Mixtral-8x7B-Instruct-v0.1"
 
 
 
